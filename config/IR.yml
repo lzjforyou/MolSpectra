@@ -1,0 +1,91 @@
+run_name: "Spectra-prediction"
+data:
+  draw_attn: False
+  primary_dset: ["nist_ir"] # nist_ir
+  base_dir: 
+  fp_types: ["morgan","rdkit","maccs"]
+  ints_thresh: 0.
+  datapath: ""
+  all_state_type: [
+    "gas",
+    "LIQUID",
+    "SOLID (KBr PELLET)",
+    "LIQUID (NEAT)",
+    "SOLID (1 mg / 650 mg KBr DISC)",
+    "SOLID (KBr DISC)",
+    "SOLID (SPLIT MULL), FLUOROLUBE FOR 3800-1330 CM^-^1, NUJOL FOR 1330-400 CM^-^1",
+    "SOLID (NUJOL MULL)",
+    "SOLUTION (10% CCl4 FOR 5000-1330, 10% CS2 FOR 1330-625 CM^-^1)",
+    "SOLID (SPLIT MULL)",
+    "SOLID (OIL MULL)",
+    "SOLID (MINERAL OIL MULL)",
+    "SOLUTION (10% CCl4 FOR 3800-1330, 10% CS2 FOR 1330-400 CM^-^1)",
+    'unknown'
+  ]
+  spec_meta_global: False
+  spectra_normalization: "l1" 
+  Spectra: "IR_spectra"
+  smiles: "smiles" 
+model:
+  bidirectional_prediction: False
+  dim_in: 320
+  dropout: 0.4
+  embed_agg: "concat"
+  embed_dim: -1
+  embed_linear: False
+  embed_types: ["hdse"]
+  ff_h_dim: 1000
+  ff_layer_type: neims # "standard" # "neims"
+  ff_num_layers: 4
+  ff_skip: True
+  gate_prediction: True
+  layer_type: "GINE+Transformer"
+  layers: 10
+  model_seed: 999
+  output_normalization: "l1" # none
+  output_activation: "relu"
+  spectrum_attention: False
+  prec_mass_offset: 0
+run:
+  other_name: "Test_"
+  amp: False
+  batch_loss_agg: "mean"
+  batch_size: 64
+  clip_grad_norm: 5.0 #  5.0
+  cuda_deterministic: False
+  device: "cuda:0"
+  do_test: True
+  do_track: False
+  early_stop_thresh: 7
+  grad_acc_interval: 1
+  learning_rate: 0.0001
+  log_tqdm: True
+  loss: "cos"
+  non_blocking: False
+  num_epochs: 100  # or 40
+  num_track: 0
+  num_workers: 8
+  optimizer: "adamw"
+  pin_memory: True
+  pred_viz: True
+  pretrained: 
+  save_media: True
+  save_split: False
+  save_state: False
+  save_test_sims: True
+  scheduler: # "cosine" or "plateau" 
+  scheduler_end_lr: 0.000000001 #1e-9
+  scheduler_period: 2
+  scheduler_ratio: 0.2
+  sim: "cos"
+  split_key: "inchikey_s" # "scaffold" #"inchikey_s"
+  split_seed: 520
+  stop_key: "spectra_sim__mean"
+  test_frac: 0.1
+  test_sets: ["train","val","test"]
+  track_plot_title: True
+  train_seed: 1314
+  use_val_info: True
+  val_frac: 0.10
+  weight_decay: 0.001
+
