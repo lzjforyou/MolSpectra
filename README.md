@@ -6,7 +6,7 @@ A deep learning framework for molecular spectrum prediction supporting multiple 
 
 - **Multi-modal Spectrum Prediction**: Support for IR, NMR, UV-Vis, and EI-MS spectroscopy
 - **Multiple Molecular Representations**: Fingerprints, molecular graphs, SMILES, and various GNN architectures
-- **Flexible Architecture**: Support for HDSE, PyG, DTNN, MAT, and other molecular encoding methods
+- **Flexible Architecture**: Support for HDSE, PyG,and other molecular encoding methods
 - **Library Matching**: Built-in functionality for spectral library matching
 - **Configurable Training**: YAML-based configuration system for easy experimentation
 
